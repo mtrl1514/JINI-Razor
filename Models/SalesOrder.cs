@@ -23,7 +23,7 @@ namespace JINI.Models
         [Display(Name = "고객")]
         public Customer Customer { get; set; }
 
-        [Display(Name = "거래명세 상세")]
+        [Display(Name = "주문 상세")]
         public ICollection<SalesOrderItem> SalesOrderItems { get; set; }
 
 

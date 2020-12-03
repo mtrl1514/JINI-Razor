@@ -40,7 +40,7 @@ namespace JINI.Models
         [Display(Name = "비고")]
         public string Comment { get; set; }
 
-        [Display(Name = "거래명세서")]
+        [Display(Name = "주문")]
         public SalesOrder SalesOrder { get; set; }
 
         [Display(Name = "품명")]

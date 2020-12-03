@@ -21,7 +21,7 @@ namespace JINI.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal RevenueCost { get; set; }
 
-        [Display(Name = "거래명세서")]
+        [Display(Name = "주문")]
         public SalesOrder SalesOrder { get; set; }
     }
 }

@@ -1,0 +1,65 @@
+﻿@page
+@model JINI.Pages.SalesOrderItems.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>SalesOrderItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SalesOrderItem.ID" />
+            <div class="form-group">
+                <label asp-for="SalesOrderItem.SalesDate" class="control-label"></label>
+                <input asp-for="SalesOrderItem.SalesDate" class="form-control" />
+                <span asp-validation-for="SalesOrderItem.SalesDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderItem.UnitCost" class="control-label"></label>
+                <input asp-for="SalesOrderItem.UnitCost" class="form-control" />
+                <span asp-validation-for="SalesOrderItem.UnitCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderItem.UnitProfit" class="control-label"></label>
+                <input asp-for="SalesOrderItem.UnitProfit" class="form-control" />
+                <span asp-validation-for="SalesOrderItem.UnitProfit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderItem.SalesQuantity" class="control-label"></label>
+                <input asp-for="SalesOrderItem.SalesQuantity" class="form-control" />
+                <span asp-validation-for="SalesOrderItem.SalesQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderItem.ItemNumber" class="control-label"></label>
+                <input asp-for="SalesOrderItem.ItemNumber" class="form-control" />
+                <span asp-validation-for="SalesOrderItem.ItemNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderItem.ItemColor" class="control-label"></label>
+                <input asp-for="SalesOrderItem.ItemColor" class="form-control" />
+                <span asp-validation-for="SalesOrderItem.ItemColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderItem.Comment" class="control-label"></label>
+                <input asp-for="SalesOrderItem.Comment" class="form-control" />
+                <span asp-validation-for="SalesOrderItem.Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
