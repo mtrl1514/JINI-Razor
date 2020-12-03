@@ -11,14 +11,18 @@ namespace JINI.Models
         public int ID { get; set; }
 
         [Required]
+        [Display(Name = "사입가게")]
         public string Supplier { get; set; }
+        [Display(Name = "주소")]
         public string Address { get; set; }
 
-        [Display(Name = "Contact Number"), DataType(DataType.PhoneNumber)]
-        public string PhoneNumber { get; set; }
+        [Display(Name = "연락처")]
+        [DataType(DataType.PhoneNumber)]
+        public string ContactNumber { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        [Display(Name = "제품명")]
+        public string ItemName { get; set; }
 
 
     }
