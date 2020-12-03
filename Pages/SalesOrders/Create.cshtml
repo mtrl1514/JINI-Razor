@@ -25,9 +25,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="SalesOrder.Customer" class="control-label"></label>
-                <select asp-for="SalesOrder.Customer" class="form-control"
+                <select asp-for="SalesOrder.Customer.ID" class="form-control"
                         asp-items="@Model.CustomerNameSL">
-                    <option value="">-- Select Customer --</option>
+                    <option value="">-- 고객 --</option>
                 </select>
                 <span asp-validation-for="SalesOrder.Customer" class="text-danger" />
             </div>

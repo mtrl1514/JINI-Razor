@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using JINI.Data;
 using JINI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JINI.Pages.SalesOrders
 {
@@ -31,33 +32,13 @@ namespace JINI.Pages.SalesOrders
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
+            var customer = await _context.Customers.FindAsync(SalesOrder.Customer.ID);            
+            SalesOrder.Customer = customer;
+            
             _context.SalesOrders.Add(SalesOrder);
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
-
-
-            var emptySalesOrder = new SalesOrder();
-
-            if (await TryUpdateModelAsync<SalesOrder>(
-                 emptySalesOrder,
-                 "salesorder",   // Prefix for form value.
-                 s => s.SalesOrderNo, s => s.SalesDate, s => s.Customer))
-            {
-                _context.SalesOrders.Add(emptySalesOrder);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
-            }
-
-            // Select DepartmentID if TryUpdateModelAsync fails.
-            PopulateCustomersDropDownList(_context, emptySalesOrder.Customer);
-            return Page();
-
+            return RedirectToPage("./Index");                        
         }
     }
 }

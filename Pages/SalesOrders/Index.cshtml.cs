@@ -23,7 +23,10 @@ namespace JINI.Pages.SalesOrders
 
         public async Task OnGetAsync()
         {
-            SalesOrder = await _context.SalesOrders.ToListAsync();
+            SalesOrder = await _context.SalesOrders
+                .Include(c => c.Customer)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

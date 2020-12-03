@@ -46,31 +46,26 @@ namespace JINI.Pages.SalesOrders
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.      
         public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
+        {            
+            _context.Attach(SalesOrder).State = EntityState.Modified;
+
+            try
+            {                
+                await _context.SaveChangesAsync();                
+            }
+            catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
+                if (!SalesOrderExists(SalesOrder.ID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            var salesOrderToUpdate = await _context.SalesOrders.FindAsync(id);
-
-            if (salesOrderToUpdate == null)
-            {
-                return NotFound();
-            }
-
-            if (await TryUpdateModelAsync<SalesOrder>(
-                 salesOrderToUpdate,
-                 "course",   // Prefix for form value.
-                   c => c.SalesOrderNo, c => c.SalesDate, c => c.Customer))
-            {
-                await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
-            }
-
-            // Select DepartmentID if TryUpdateModelAsync fails.
-            PopulateCustomersDropDownList(_context, salesOrderToUpdate.Customer);
-            return Page();
+            return RedirectToPage("./Index");
         }
 
         private bool SalesOrderExists(int id)
